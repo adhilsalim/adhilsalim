@@ -1,5 +1,3 @@
-### Hi there 👋
-
 <h1 align="center">Hello World! I'M Adhil Salim</h1>
 <h3 align="center">A passionate problem solver</h3>
 
