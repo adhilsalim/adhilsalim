@@ -1,13 +1,13 @@
-<h1 align="center">Hello World! I'M Adhil Salim</h1>
+<h1 align="center">Hello World! I'm Adhil Salim</h1>
 <h3 align="center">A passionate problem solver</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=adhilsalim&label=Profile%20views&color=0e75b6&style=flat" alt="adhilsalim" /> </p>
 
 - 🔭 I’m currently working on **some awesome projects**
 
-- 🌱 Currently pursuing **B.Tech on CSE @ajce**
+- 🌱 Pursuing **B.Tech on CSE @ajce**
 
-- 📫 Reach me via **cloudfoxapp@gmail.com**
+- 📫 Reach me via **cloudfoxapps@gmail.com**
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
