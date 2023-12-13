@@ -46,7 +46,7 @@ def create_image_with_heart(x, y):
     img.paste(heart_image, (x, y), mask)
 
     # Save the final image
-    img.save("img.png")
+    img.save("github_banner_heart.png")
 
 if __name__ == "__main__":
     # Get user input for X and Y coordinates
@@ -55,4 +55,4 @@ if __name__ == "__main__":
 
     create_image_with_heart(x_input, y_input)
 
-    print("Image created and saved as img.png.")
+    print("Image created and saved as github_banner_heart.png")
