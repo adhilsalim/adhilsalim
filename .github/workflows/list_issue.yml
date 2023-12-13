@@ -18,15 +18,14 @@ jobs:
       with:
         python-version: 3.x
 
-    - name: Install Pillow
+    - name: Install pillo to create image
       run: |
         python -m pip install --upgrade pip
         pip install Pillow
 
-    - name: Extract X and Y coordinates
+    - name: get X,Y from issue
       id: extract-coordinates
       run: |
-        # Extract X and Y coordinates from the issue title
         issue_title="${{ github.event.issue.title }}"
         IFS=',' read -r x_coord y_coord <<< "${issue_title}"
 
@@ -60,13 +59,15 @@ jobs:
 
     - name: Update README
       run: |
-        echo "![GitHub Banner Image](github_banner_heart.png)" > README.md
         echo "" >> README.md
         echo "## Hello World, I'm Adhil 🤍" >> README.md
         echo "" >> README.md
         echo "I am a computer science and engineering student at amal jyothi college of engineering." >> README.md
         echo "" >> README.md
         echo "# Place your heart" >> README.md
+        echo "" >> README.md
+        echo "![GitHub Banner Image](github_banner_heart.png)" > README.md
+        echo "" >> README.md
         echo "Yes, you can move this heart to any position!" >> README.md
         echo "- X coordinate can have value from -600 to 600" >> README.md
         echo "- Y coordinate can have value from -300 to 300" >> README.md
@@ -77,7 +78,7 @@ jobs:
 
         # Display the latest 5 issue usernames in README
         for username in ${{ steps.get-latest-usernames.outputs.latest_usernames }}; do
-          echo "- ${username}" >> README.md
+          echo "- [${username}](https://www.github.com/${username})" >> README.md
         done
 
         # Commit the changes
