@@ -2,17 +2,14 @@ import sys
 from PIL import Image
 
 def create_image_with_heart(x, y):
-    # Create a black background image
-    width, height = 1250, 650  # You can adjust the size as needed
-    background_color = (0, 0, 0)  # Black
+    width, height = 1250, 650  
+    background_color = (0, 0, 0)  
     img = Image.new("RGBA", (width, height), background_color)
 
-    # Load the heart image and resize it to fit within the background
     heart_image = Image.open("images/heart.png")
     heart_image = heart_image.convert("RGBA")
     heart_image.thumbnail((50, 50), Image.LANCZOS)
 
-    # Calculate the position to paste the heart image
     if 0 <= x <= 600:
         x_position = x
     elif -600 <= x < 0:
@@ -30,14 +27,11 @@ def create_image_with_heart(x, y):
     print(f"x axis of heart: {x_position}")
     print(f"y axis of heart: {y_position}")
 
-    # Paste the resized heart image onto the black background
     img.paste(heart_image, (x_position, y_position), heart_image)
 
-    # Save the final image
     img.save("github_banner_heart.png")
 
 if __name__ == "__main__":
-    # Get user input for X and Y coordinates from command-line arguments
     if len(sys.argv) != 3:
         print("Usage: python generate_banner.py <X-coordinate> <Y-coordinate>")
         sys.exit(1)
@@ -46,5 +40,4 @@ if __name__ == "__main__":
     y_input = int(sys.argv[2])
 
     create_image_with_heart(x_input, y_input)
-
     print("Image created and saved as github_banner_heart.png")
