@@ -1,5 +1,5 @@
-- **Issue Title:** 102,300
+- **Issue Title:** 600,300
   **Created by:** adhilsalim
-  **X Coordinate:** 102
+  **X Coordinate:** 600
   **Y Coordinate:** 300
   ![GitHub Banner Image](github_banner_heart.png)
