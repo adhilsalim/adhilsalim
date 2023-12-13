@@ -1,0 +1,27 @@
+name: Update README on Issue Creation
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update README
+        run: |
+          echo "Issue Title: ${{ github.event.issue.title }}" >> README.md
+          echo "Created by: ${{ github.event.issue.user.login }}" >> README.md
+
+      - name: Commit changes
+        run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git add README.md
+          git commit -m "Update README with issue information"
+          git push
