@@ -10,56 +10,67 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x
 
-      - name: Install Pillow
-        run: |
-          python -m pip install --upgrade pip
-          pip install Pillow
+    - name: Install Pillow
+      run: |
+        python -m pip install --upgrade pip
+        pip install Pillow
 
-      - name: Extract X and Y coordinates
-        id: extract-coordinates
-        run: |
-          # Extract X and Y coordinates from the issue title
-          issue_title="${{ github.event.issue.title }}"
-          IFS=',' read -r x_coord y_coord <<< "${issue_title}"
+    - name: Extract X and Y coordinates
+      id: extract-coordinates
+      run: |
+        # Extract X and Y coordinates from the issue title
+        issue_title="${{ github.event.issue.title }}"
+        IFS=',' read -r x_coord y_coord <<< "${issue_title}"
 
-          echo "X Coordinate: ${x_coord}"
-          echo "Y Coordinate: ${y_coord}"
+        echo "X Coordinate: ${x_coord}"
+        echo "Y Coordinate: ${y_coord}"
 
-          echo "::set-output name=x_coord::${x_coord}"
-          echo "::set-output name=y_coord::${y_coord}"
+        echo "::set-output name=x_coord::${x_coord}"
+        echo "::set-output name=y_coord::${y_coord}"
 
-      - name: Run generate_banner.py
-        run: |
-          x_coord="${{ steps.extract-coordinates.outputs.x_coord }}"
-          y_coord="${{ steps.extract-coordinates.outputs.y_coord }}"
+    - name: Run generate_banner.py
+      run: |
+        x_coord="${{ steps.extract-coordinates.outputs.x_coord }}"
+        y_coord="${{ steps.extract-coordinates.outputs.y_coord }}"
 
-          python generate_banner.py "${x_coord}" "${y_coord}"
+        python generate_banner.py "${x_coord}" "${y_coord}"
 
-      - name: Commit changes
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
+    - name: Update README
+      run: |
+        echo "![GitHub Banner Image](github_banner_heart.png)" > README.md
+        echo "" >> README.md
+        echo "## Hello World, I'm Adhil 🤍" >> README.md
+        echo "" >> README.md
+        echo "I am a computer science and engineering student at amal jyothi college of engineering." >> README.md
+        echo "" >> README.md
+        echo "# Place your heart" >> README.md
+        echo "Yes, you can move this heart to any position!" >> README.md
+        echo "- X coordinate can have value from -600 to 600" >> README.md
+        echo "- Y coordinate can have value from -300 to 300" >> README.md
+        echo "" >> README.md
+        echo "[move my heart 🤍](https://github.com/adhilsalim/adhilsalim/issues/new?title=${x_coord},${y_coord}&body=Try+Changing+the+values+and+submit+the+issue.+Give+it+some+time+to+reflect.) and come back here after sending some messages to your girlfriend." >> README.md
+        echo "" >> README.md
+        echo "# Latest 5 moves" >> README.md
+        echo "- adhilsalim" >> README.md
+        echo "- abhishek" >> README.md
 
-          # Commit the generated image
-          git add github_banner_heart.png
-          git commit -m "Add GitHub banner image"
+        # Get the latest 5 issue usernames
+        latest_usernames=$(gh issue list --limit 5 --json user.login --jq '.[].user.login')
+        for username in $latest_usernames; do
+          echo "- ${username}" >> README.md
+        done
 
-          # Overwrite README with the image
-          echo "- **Issue Title:** ${{ github.event.issue.title }}" > README.md
-          echo "  **Created by:** ${{ github.event.issue.user.login }}" >> README.md
-          echo "  **X Coordinate:** ${{ steps.extract-coordinates.outputs.x_coord }}" >> README.md
-          echo "  **Y Coordinate:** ${{ steps.extract-coordinates.outputs.y_coord }}" >> README.md
-          echo "  ![GitHub Banner Image](github_banner_heart.png)" >> README.md
-
-          # Commit the changes to README
-          git add README.md
-          git commit -m "Append README with issue information and add GitHub banner image"
-          git push
+        # Commit the changes
+        git config user.name "${{ github.actor }}"
+        git config user.email "${{ github.actor }}@users.noreply.github.com"
+        git add README.md github_banner_heart.png
+        git commit -m "Update README with banner and latest issue information"
+        git push
