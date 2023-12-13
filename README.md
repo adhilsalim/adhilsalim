@@ -1,5 +1,5 @@
-- **Issue Title:** 402,202
+- **Issue Title:** 0,0
   **Created by:** adhilsalim
-  **X Coordinate:** 402
-  **Y Coordinate:** 202
+  **X Coordinate:** 0
+  **Y Coordinate:** 0
   ![GitHub Banner Image](github_banner_heart.png)
