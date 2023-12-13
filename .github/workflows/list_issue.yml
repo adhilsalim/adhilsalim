@@ -15,8 +15,9 @@ jobs:
 
       - name: Update README
         run: |
-          echo "Issue Title: ${{ github.event.issue.title }}" >> README.md
-          echo "Created by: ${{ github.event.issue.user.login }}" >> README.md
+          echo "- **Issue Title:** ${{
+            github.event.issue.title }}" >> README.md
+          echo "  **Created by:** ${{ github.event.issue.user.login }}" >> README.md
 
       - name: Commit changes
         run: |
