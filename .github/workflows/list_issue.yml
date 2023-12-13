@@ -43,17 +43,23 @@ jobs:
 
           python generate_banner.py "${x_coord}" "${y_coord}"
 
-      - name: Update README
-        run: |
-          echo "- **Issue Title:** ${{ github.event.issue.title }}" >> README.md
-          echo "  **Created by:** ${{ github.event.issue.user.login }}" >> README.md
-          echo "  **X Coordinate:** ${{ steps.extract-coordinates.outputs.x_coord }}" >> README.md
-          echo "  **Y Coordinate:** ${{ steps.extract-coordinates.outputs.y_coord }}" >> README.md
-
       - name: Commit changes
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+
+          # Commit the generated image
+          git add github_banner_heart.png
+          git commit -m "Add GitHub banner image"
+
+          # Overwrite README with the image
+          echo "- **Issue Title:** ${{ github.event.issue.title }}" > README.md
+          echo "  **Created by:** ${{ github.event.issue.user.login }}" >> README.md
+          echo "  **X Coordinate:** ${{ steps.extract-coordinates.outputs.x_coord }}" >> README.md
+          echo "  **Y Coordinate:** ${{ steps.extract-coordinates.outputs.y_coord }}" >> README.md
+          echo "  ![GitHub Banner Image](github_banner_heart.png)" >> README.md
+
+          # Commit the changes to README
           git add README.md
-          git commit -m "Append README with issue information and generate banner"
+          git commit -m "Append README with issue information and add GitHub banner image"
           git push
