@@ -51,37 +51,37 @@ jobs:
 
           echo "::set-output name=latest_issues::${latest_issues}"
 
-      - name: Update README and close issues
-        run: |
-          echo "## Hello World, I'm Adhil 🤍" > README.md
-          echo "" >> README.md
-          echo "# Place your heart" >> README.md
-          echo "Yes, you can move this heart to any position!" >> README.md
-          echo "- X coordinate can have value from -600 to 600" >> README.md
-          echo "- Y coordinate can have value from -300 to 300" >> README.md
-          echo "" >> README.md
-          echo "[move my heart 🤍](https://github.com/adhilsalim/adhilsalim/issues/new?title=${x_coord},${y_coord}&body=Try+Changing+the+values+and+submit+the+issue.+Give+it+some+time+to+reflect.) and come back here after sending some messages to your girlfriend." >> README.md
-          echo "" >> README.md
-          echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
-          echo "" >> README.md
-          echo "# Latest 5 moves" >> README.md
+          - name: Update README and close issues
+      run: |
+        echo "## Hello World, I'm Adhil 🤍" > README.md
+        echo "" >> README.md
+        echo "# Place your heart" >> README.md
+        echo "Yes, you can move this heart to any position!" >> README.md
+        echo "- X coordinate can have value from -600 to 600" >> README.md
+        echo "- Y coordinate can have value from -300 to 300" >> README.md
+        echo "" >> README.md
+        echo "[move my heart 🤍](https://github.com/adhilsalim/adhilsalim/issues/new?title=${x_coord},${y_coord}&body=Try+Changing+the+values+and+submit+the+issue.+Give+it+some+time+to+reflect.) and come back here after sending some messages to your girlfriend." >> README.md
+        echo "" >> README.md
+        echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
+        echo "" >> README.md
+        echo "# Latest 5 moves" >> README.md
 
-          # Display the latest 5 issues in README and close them
-          for issue in $(echo "$latest_issues" | jq -c -r '.[]'); do
-            issue_number=$(echo "$issue" | jq -r '.number')
-            title=$(echo "$issue" | jq -r '.title')
-            username=$(echo "$issue" | jq -r '.user.login')
-            echo "- $username moved to ($x_coord, $y_coord): $title" >> README.md
+        # Display the latest 5 issues in README and close them
+        for issue in $(echo "$latest_issues" | jq -c -r '.[]'); do
+          issue_number=$(echo "$issue" | jq -r '.number')
+          title=$(echo "$issue" | jq -r '.title')
+          username=$(echo "$issue" | jq -r '.user.login')
+          echo "- $username moved to ($x_coord, $y_coord): $title" >> README.md
 
-            # Close the issue
-            curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              -d '{"state":"closed"}' \
-              "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
-          done
+          # Close the issue
+          curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+            -d '{"state":"closed"}' \
+            "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
+        done
 
-          # Commit the changes
-          git config user.name "Your GitHub Username"
-          git config user.email "your.email@example.com"
-          git add README.md github_banner_heart.png
-          git commit -m "Update README with banner and latest issue information"
-          git push
+        # Commit the changes
+        git config user.name "adhilsalim"
+        git config user.email "adhilsalim@users.noreply.github.com"
+        git add README.md github_banner_heart.png
+        git commit -m "update with magic"
+        git push
