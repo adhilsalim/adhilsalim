@@ -1,6 +1,6 @@
-## Hello World, I'm Adhil 🤍
+# Hello World, I'm Adhil 🤍
 
-# Place your heart
+## Place your heart
 Yes, you can move this heart to any position!
 - X coordinate can have value from -600 to 600
 - Y coordinate can have value from -300 to 300
@@ -9,4 +9,5 @@ Yes, you can move this heart to any position!
 
 ![GitHub Banner Image](github_banner_heart.png)
 
-# Latest 5 moves
+## Latest 5 moves
+
