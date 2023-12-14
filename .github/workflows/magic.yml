@@ -74,6 +74,7 @@ jobs:
 
         # Display the latest 5 issues in README and close them
         for username in $(echo "${{ steps.extract-usernames.outputs.usernames }}" | tr '\n' ' '); do
+          echo "Username: $username"
           echo "- $username moved to ($x_coord, $y_coord)" >> README.md
         done
 
