@@ -71,6 +71,12 @@ jobs:
           issue_number=$(echo "$issue" | jq -r '.number')
           title=$(echo "$issue" | jq -r '.title')
           username=$(echo "$issue" | jq -r '.user.login')
+
+          # Debugging: Echo the values for testing
+          echo "Issue Number: $issue_number"
+          echo "Title: $title"
+          echo "Username: $username"
+
           echo "- $username moved to ($x_coord, $y_coord): $title" >> README.md
 
           # Close the issue
