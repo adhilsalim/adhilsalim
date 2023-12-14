@@ -51,21 +51,24 @@ jobs:
 
     - name: Update README and close issues
       run: |
-        echo "# Hello World, I'm Adhil 🤍" > README.md
+        echo "# Hello World, I'm Adhil 👋" > README.md
         echo "" >> README.md
-        echo "## Place your heart" >> README.md
-        echo "Yes, you can move this heart to any position!" >> README.md
-        echo "- X coordinate can have value from -600 to 600" >> README.md
-        echo "- Y coordinate can have value from -300 to 300" >> README.md
+        echo "Nice to meet you ! I'm currently studying at [amal jyothi](https://www.ajce.in/home/index.html) as computer science & engineering student." >> README.md
+        echo "## Try moving my heart" >> README.md
+        echo "Yes, you can move this heart. Scroll down to see the range for X & Y coordinates && 5 latest moves made by my friends." >> README.md
+        echo "- X coordinate can have value from (negative) -600 to 600" >> README.md
+        echo "- Y coordinate can have value from (negative) -300 to 300" >> README.md
         echo "" >> README.md
-        echo "[move my heart 🤍](https://github.com/adhilsalim/adhilsalim/issues/new?title=$100,200&body=Try+Changing+the+values+and+submit+the+issue.+Give+it+some+time+to+reflect.) and come back here after sending some messages to your girlfriend." >> README.md
+        echo "[click to move my heart](https://github.com/adhilsalim/adhilsalim/issues/new?title=$100,200&body=Try+Changing+the+values+and+submit+the+issue.+Give+it+some+time+to+reflect.) and come back here after sending some messages to your girlfriend." >> README.md
         echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
         echo "## Latest 5 moves" >> README.md
 
-        # Append usernames to README using printf
-        printf "TEST %s\n" "${{ steps.get_last_moves.outputs.usernames }}" >> README.md
+        # Append each line of the output to README using printf
+        while IFS= read -r line; do
+          printf "%s\n" "$line" >> README.md
+        done <<< "${{ steps.get_last_moves.outputs.usernames }}"
 
         # Commit the changes
         git config user.name "adhilsalim"
