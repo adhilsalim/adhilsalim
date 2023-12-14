@@ -1,4 +1,4 @@
-name: Update README and Generate Banner on Issue Creation
+name: MAGIC
 
 on:
   issues:
@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  update-readme-and-generate-banner:
+  do-the-magic:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,15 +18,15 @@ jobs:
       with:
         python-version: 3.x
 
-    - name: Install Pillow
+    - name: Install Pillow and requests
       run: |
         python -m pip install --upgrade pip
         pip install Pillow
+        pip install requests
 
     - name: Extract X and Y coordinates
       id: extract-coordinates
       run: |
-        # Extract X and Y coordinates from the issue title
         issue_title="${{ github.event.issue.title }}"
         IFS=',' read -r x_coord y_coord <<< "${issue_title}"
 
@@ -43,25 +43,16 @@ jobs:
 
         python generate_banner.py "${x_coord}" "${y_coord}"
 
-    - name: Fetch latest 5 issues
-      id: get-latest-issues
+    - name: Run get_last_moves.py and append usernames to README
       run: |
-        # Fetch the latest 5 issues using GitHub API
-        latest_issues=$(curl -s "https://api.github.com/repos/${{ github.repository }}/issues?state=all&per_page=5")
-
-        echo "::set-output name=latest_issues::${latest_issues}"
-
-    - name: Extract usernames from latest issues
-      id: extract-usernames
-      run: |
-        usernames=$(echo "$latest_issues" | jq -r '.[].user.login')
+        usernames=$(python get_last_moves.py)
         echo "::set-output name=usernames::${usernames}"
 
     - name: Update README and close issues
       run: |
-        echo "## Hello World, I'm Adhil 🤍" > README.md
+        echo "# Hello World, I'm Adhil 🤍" > README.md
         echo "" >> README.md
-        echo "# Place your heart" >> README.md
+        echo "## Place your heart" >> README.md
         echo "Yes, you can move this heart to any position!" >> README.md
         echo "- X coordinate can have value from -600 to 600" >> README.md
         echo "- Y coordinate can have value from -300 to 300" >> README.md
@@ -70,13 +61,10 @@ jobs:
         echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
-        echo "# Latest 5 moves" >> README.md
+        echo "## Latest 5 moves" >> README.md
 
-        # Display the latest 5 issues in README and close them
-        for username in $(echo "${{ steps.extract-usernames.outputs.usernames }}" | tr '\n' ' '); do
-          echo "Username: $username"
-          echo "- $username moved to ($x_coord, $y_coord)" >> README.md
-        done
+        # Append usernames to README
+        echo "${{ steps.get_last_moves.py.outputs.usernames }}" >> README.md
 
         # Commit the changes
         git config user.name "adhilsalim"
