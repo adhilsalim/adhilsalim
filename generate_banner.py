@@ -9,7 +9,7 @@ def create_image_with_heart(x, y):
     heart_image = Image.open("images/heart.png")
     heart_image = heart_image.convert("RGBA")
     heart_image.thumbnail((50, 50), Image.LANCZOS)
-
+    
     r, g, b, a = heart_image.split()
     mask = a
 
