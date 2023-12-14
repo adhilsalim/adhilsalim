@@ -16,7 +16,7 @@ def print_issue_details(issues):
         for issue in issues:
             username = issue["user"]["login"]
             title = issue["title"]
-            print(f"- [{username}](https://github.com/{username}) moved 💗 to {title}")
+            print(f"- [{username}](https://github.com/{username}) moved 💗 to ({title.split(',')[0]} , {title.split(',')[1]})")
 
 def main():
     github_data = fetch_github_data()
