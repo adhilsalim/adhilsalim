@@ -1,6 +1,3 @@
-It seems like there is a formatting error in your workflow YAML file. The indentation is not correct in the "Update README and close issues" step. Here's the corrected version:
-
-```yaml
 name: Update README and Generate Banner on Issue Creation
 
 on:
@@ -88,6 +85,3 @@ jobs:
         git add README.md github_banner_heart.png
         git commit -m "update with magic"
         git push
-```
-
-Make sure that the indentation is correct, especially in the "Update README and close issues" step. If you copy-paste the provided YAML, it should resolve the syntax error.
