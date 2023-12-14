@@ -51,6 +51,12 @@ jobs:
 
         echo "::set-output name=latest_issues::${latest_issues}"
 
+    - name: Extract usernames from latest issues
+      id: extract-usernames
+      run: |
+        usernames=$(echo "$latest_issues" | jq -r '.[].user.login')
+        echo "::set-output name=usernames::${usernames}"
+
     - name: Update README and close issues
       run: |
         echo "## Hello World, I'm Adhil 🤍" > README.md
@@ -67,22 +73,8 @@ jobs:
         echo "# Latest 5 moves" >> README.md
 
         # Display the latest 5 issues in README and close them
-        for issue in $(echo "$latest_issues" | jq -c -r '.[]'); do
-          issue_number=$(echo "$issue" | jq -r '.number')
-          title=$(echo "$issue" | jq -r '.title')
-          username=$(echo "$issue" | jq -r '.user.login')
-
-          # Debugging: Echo the values for testing
-          echo "Issue Number: $issue_number"
-          echo "Title: $title"
-          echo "Username: $username"
-
-          echo "- $username moved to ($x_coord, $y_coord): $title" >> README.md
-
-          # Close the issue
-          curl -X PATCH -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            -d '{"state":"closed"}' \
-            "https://api.github.com/repos/${{ github.repository }}/issues/${issue_number}"
+        for username in $(echo "${{ steps.extract-usernames.outputs.usernames }}" | tr '\n' ' '); do
+          echo "- $username moved to ($x_coord, $y_coord)" >> README.md
         done
 
         # Commit the changes
