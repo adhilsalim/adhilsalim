@@ -1,4 +1,4 @@
-name: magic
+name: Update README and Generate Banner on Issue Creation
 
 on:
   issues:
@@ -6,7 +6,7 @@ on:
       - opened
 
 jobs:
-  generate-profile-readme:
+  update-readme-and-generate-banner:
     runs-on: ubuntu-latest
 
     steps:
@@ -26,6 +26,7 @@ jobs:
       - name: Extract X and Y coordinates
         id: extract-coordinates
         run: |
+          # Extract X and Y coordinates from the issue title
           issue_title="${{ github.event.issue.title }}"
           IFS=',' read -r x_coord y_coord <<< "${issue_title}"
 
@@ -50,9 +51,14 @@ jobs:
       - name: Fetch latest 5 issues
         id: get-latest-issues
         run: |
+          # Fetch the latest 5 issues using GitHub API
           latest_issues=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-            "https://api.github.com/repos/${{ github.repository }}/issues?state=all&per_page=5" \
-            | jq -r '[.[] | {title, user: .user.login}]')
+            "https://api.github.com/repos/${{ github.repository }}/issues?state=all&per_page=5")
+
+          # Check if the response is an array, if not, wrap it in an array
+          if [ "$(echo "$latest_issues" | jq 'type')" != "array" ]; then
+            latest_issues="[$latest_issues]"
+          fi
 
           echo "::set-output name=latest_issues::${latest_issues}"
 
@@ -72,15 +78,15 @@ jobs:
           echo "# Latest 5 moves" >> README.md
 
           # Display the latest 5 issues in README
-          for issue in ${{ steps.get-latest-issues.outputs.latest_issues }}; do
+          for issue in $(echo "$latest_issues" | jq -c -r '.[]'); do
             title=$(echo "$issue" | jq -r '.title')
-            username=$(echo "$issue" | jq -r '.user')
+            username=$(echo "$issue" | jq -r '.user.login')
             echo "- $username moved to ($x_coord, $y_coord): $title" >> README.md
           done
 
           # Commit the changes
           git config user.name "adhilsalim"
-          git config user.email "bizadhil@gmail.com"
+          git config user.email "adhilsalim@users.noreply.github.com"
           git add README.md github_banner_heart.png
-          git commit -m "update readme with magic"
+          git commit -m "Update README with banner and latest issue information"
           git push
