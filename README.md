@@ -18,8 +18,8 @@ See who made the latest move in **Recent moves**
 ## Recent moves: 
 > [!NOTE] 
 > Even though your change is listed in here, it might take a few minutes to actually update. No worries, your request is in, so no need to resubmit it.
+- [Advaith-dev](https://github.com/Advaith-dev) moved 💗 to (300 , 0)
 - [bazilsalim](https://github.com/bazilsalim) moved 💗 to (0 , 0)
 - [evansiehere](https://github.com/evansiehere) moved 💗 to (300 , 200)
 - [evansiehere](https://github.com/evansiehere) moved 💗 to (300 , 600)
 - [albinj6](https://github.com/albinj6) moved 💗 to (-600 , -300)
-- [ElzaJ009](https://github.com/ElzaJ009) moved 💗 to (200 , 200)
