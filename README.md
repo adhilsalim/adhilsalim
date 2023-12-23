@@ -18,8 +18,8 @@ See who made the latest move in **Recent moves**
 ## Recent moves: 
 > [!NOTE] 
 > Even though your change is listed in here, it might take a few minutes to actually update. No worries, your request is in, so no need to resubmit it.
+- [AaronSMathew](https://github.com/AaronSMathew) moved 💗 to (69 , 68)
 - [AaronSMathew](https://github.com/AaronSMathew) moved 💗 to (123 , 456)
 - [PrinuVinod](https://github.com/PrinuVinod) moved 💗 to (300 , 200)
 - [AkhilLV](https://github.com/AkhilLV) moved 💗 to (1250 , 650)
 - [zameel7](https://github.com/zameel7) moved 💗 to (300 , 300)
-- [Advaith-dev](https://github.com/Advaith-dev) moved 💗 to (300 , 0)
