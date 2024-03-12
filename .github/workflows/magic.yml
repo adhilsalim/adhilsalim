@@ -62,7 +62,7 @@ jobs:
         echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
-        echo "## Recent moves: " >> README.md
+        echo "## $ cd adhilsalim/heart/last_5_moves: " >> README.md
         echo "> [!NOTE] " >> README.md
         echo "> Even though your change is listed in here, it might take a few minutes to actually update. No worries, your request is in, so no need to resubmit it." >> README.md
 
