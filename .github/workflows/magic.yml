@@ -71,6 +71,9 @@ jobs:
       run: |
         usernames=$(python get_last_moves.py)
         echo "${usernames}" >> README.md
+    - name: Add github streak
+      run: |
+        echo "[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=adhilsalim&theme=dark&hide_border=true)](https://git.io/streak-stats)"
 
     - name: Commit changes to repository
       run: |
