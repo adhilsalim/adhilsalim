@@ -73,7 +73,7 @@ jobs:
         echo "${usernames}" >> README.md
     - name: Add github streak
       run: |
-        echo "[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=adhilsalim&theme=dark&hide_border=true)](https://git.io/streak-stats)"
+        echo "[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=adhilsalim&theme=dark&hide_border=true)](https://git.io/streak-stats)" >> README.md
 
     - name: Commit changes to repository
       run: |
