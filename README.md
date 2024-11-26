@@ -18,9 +18,9 @@ See who made the latest move in **Recent moves**
 ## $ cd adhilsalim/heart/last_5_moves: 
 > [!NOTE] 
 > Even though your change is listed in here, it might take a few minutes to actually update. No worries, your request is in, so no need to resubmit it.
+- [Viwvwek](https://github.com/Viwvwek) moved 💗 to (00 , 150)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (100 , 200)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (100 , 100)
 - [adithyansk-2002](https://github.com/adithyansk-2002) moved 💗 to (00 , 00)
 - [FATHIMALEARNS](https://github.com/FATHIMALEARNS) moved 💗 to (00 , 500)
-- [NeilSenEasow](https://github.com/NeilSenEasow) moved 💗 to (00 , 200)
 [![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=adhilsalim&theme=dark&hide_border=true)](https://git.io/streak-stats)
