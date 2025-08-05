@@ -48,10 +48,11 @@ jobs:
         echo "# Hello World, I'm Adhil 👋" > README.md
         echo "" >> README.md
         echo "## $ cd adhilsalim/about-me" >> README.md
-        echo "Currently working as a software developer at IBM. " >> README.md
+        echo "Currently working as a software developer at [IBM](https://www.ibm.com/). " >> README.md
         echo "## $ cd adhilsalim/heart" >> README.md
-        echo "Place ❤️ anywhere in the canvas!" >> README.md
-        echo "[CLICK HERE TO CHANGE ❤️ POSITION](https://github.com/adhilsalim/adhilsalim/issues/new?title=00,200&body=DO+NOT+ADD+SPACE.+Just+change+the+values+and+hit+submit.+It+will+take+some+time+to+reflect.)" >> README.md
+        echo "Place ❤️ anywhere on the canvas!" >> README.md
+        echo "" >> README.md
+        echo "[CLICK HERE TO CHANGE POSITION](https://github.com/adhilsalim/adhilsalim/issues/new?title=00,200&body=DO+NOT+ADD+SPACE.+Just+change+the+values+and+hit+submit.+It+will+take+some+time+to+reflect.)" >> README.md
         echo "" >> README.md
         echo "> [!TIP]" >> README.md
         echo "> ## Instructions" >> README.md
@@ -61,7 +62,7 @@ jobs:
         echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
-        echo "## $ cd adhilsalim/heart/lastMoves?list=5: " >> README.md
+        echo "## $ curl https://adhilsalim/heart/recentMoves?list=5: " >> README.md
         echo "> [!NOTE] " >> README.md
         echo "> Changes will take 1-2 minutes to reflect." >> README.md
 
