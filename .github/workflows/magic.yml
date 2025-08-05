@@ -62,7 +62,7 @@ jobs:
         echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
-        echo "## $ curl https://adhilsalim/heart/recentMoves?list=5: " >> README.md
+        echo "## $ python adhilsalim/heart/recentMoves.py 5: " >> README.md
         echo "> [!NOTE] " >> README.md
         echo "> Changes will take 1-2 minutes to reflect." >> README.md
 
