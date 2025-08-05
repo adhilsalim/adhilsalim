@@ -15,11 +15,11 @@ Place ❤️ anywhere on the canvas!
 
 ![GitHub Banner Image](github_banner_heart.png)
 
-## $ curl https://adhilsalim/heart/recentMoves?list=5: 
+## $ python adhilsalim/heart/recentMoves.py 5: 
 > [!NOTE] 
 > Changes will take 1-2 minutes to reflect.
+- [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (100 , 100)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
 - [deeptaksunny](https://github.com/deeptaksunny) moved 💗 to (100 , 100)
-- [KSBM009](https://github.com/KSBM009) moved 💗 to (50 , 401)
