@@ -48,33 +48,29 @@ jobs:
         echo "# Hello World, I'm Adhil 👋" > README.md
         echo "" >> README.md
         echo "## $ cd adhilsalim/about-me" >> README.md
-        echo "Nice to meet you ! I'm currently studying at [amal jyothi](https://www.ajce.in/home/index.html) as a computer science & engineering student. Right now i'm exploring the intersection of curiosity and possibility. I have some small projects here on github." >> README.md
+        echo "Currently working as a software developer at IBM. " >> README.md
         echo "## $ cd adhilsalim/heart" >> README.md
-        echo "Check out this awesome heart placed by cool people! Want to join in on the fun? Click the link down below to make your move!" >> README.md
+        echo "Place ❤️ anywhere in the canvas!" >> README.md
+        echo "[CLICK HERE TO CHANGE ❤️ POSITION](https://github.com/adhilsalim/adhilsalim/issues/new?title=00,200&body=DO+NOT+ADD+SPACE.+Just+change+the+values+and+hit+submit.+It+will+take+some+time+to+reflect.)" >> README.md
         echo "" >> README.md
-        echo "See who made the latest move in **Recent moves**" >> README.md
         echo "> [!TIP]" >> README.md
+        echo "> ## Instructions" >> README.md
         echo "> - X coordinate can have value from (negative) -600 to 600" >> README.md
         echo "> - Y coordinate can have value from (negative) -300 to 300" >> README.md
         echo "> - If any coordinate exceeds its range, it will be reset to 0" >> README.md
         echo "" >> README.md
-        echo "[click to move heart](https://github.com/adhilsalim/adhilsalim/issues/new?title=$100,200&body=DO+NOT+ADD+SPACE.+Just+change+the+values+and+hit+submit.+It+will+take+some+time+to+reflect.) and come back here after few minutes. **Also don't forget to follow my profile!**" >> README.md
-        echo "" >> README.md
         echo "![GitHub Banner Image](github_banner_heart.png)" >> README.md
         echo "" >> README.md
-        echo "## $ cd adhilsalim/heart/last_5_moves: " >> README.md
+        echo "## $ cd adhilsalim/heart/lastMoves?list=5: " >> README.md
         echo "> [!NOTE] " >> README.md
-        echo "> Even though your change is listed in here, it might take a few minutes to actually update. No worries, your request is in, so no need to resubmit it." >> README.md
+        echo "> Changes will take 1-2 minutes to reflect." >> README.md
 
     - name: Run get_last_moves.py and append usernames to README
       id: get_last_moves
       run: |
         usernames=$(python get_last_moves.py)
         echo "${usernames}" >> README.md
-    - name: Add github streak
-      run: |
-        echo "[![GitHub Streak](https://github-readme-streak-stats.herokuapp.com?user=adhilsalim&theme=dark&hide_border=true)](https://git.io/streak-stats)" >> README.md
-
+        
     - name: Commit changes to repository
       run: |
         git config user.name "adhilsalim"
