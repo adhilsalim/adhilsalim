@@ -18,8 +18,8 @@ Place ❤️ anywhere on the canvas!
 ## $ python adhilsalim/heart/recentMoves.py 5: 
 > [!NOTE] 
 > Changes will take 1-2 minutes to reflect.
+- [JET609](https://github.com/JET609) moved 💗 to (00 , 2000)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (100 , 100)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
 - [adhilsalim](https://github.com/adhilsalim) moved 💗 to (0 , 0)
-- [deeptaksunny](https://github.com/deeptaksunny) moved 💗 to (100 , 100)
