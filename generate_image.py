@@ -26,6 +26,7 @@ COLOR_CRASH_BG = (0, 0, 0, 180) # Black with alpha
 COLOR_FONT_TITLE = '#FFFFFF'
 COLOR_FONT_CRASH = '#f6e05e'
 COLOR_FONT_SUB = '#FFFFFF'
+COLOR_FONT_SHADOW = (45, 55, 72) # #2d3748 for the retro shadow
 
 OTHER_CAR_COLORS = ['#e53e3e', '#38b2ac', '#9f7aea', '#4299e1']
 PARKED_CAR_COLORS = ['#A0AEC0', '#718096', '#4A5568']
@@ -113,11 +114,18 @@ def draw_road(draw, road_markings):
         draw.line([mark['x'], mark['y'], mark['x'], mark['y'] + 20], fill=COLOR_WHITE, width=5)
 
 def draw_message(draw, message, submessage):
-    """Draws the CRASHED message."""
+    """Draws the CRASHED message with a retro shadow effect."""
     draw.rectangle([0, CANVAS_HEIGHT/2 - 60, CANVAS_WIDTH, CANVAS_HEIGHT/2 + 60], fill=COLOR_CRASH_BG)
     font_large = get_font(40)
     font_small = get_font(14)
+    shadow_offset = 3
+
+    # Main message shadow and text
+    draw.text((CANVAS_WIDTH/2 + shadow_offset, CANVAS_HEIGHT/2 + shadow_offset), message, font=font_large, fill=COLOR_FONT_SHADOW, anchor='mm')
     draw.text((CANVAS_WIDTH/2, CANVAS_HEIGHT/2), message, font=font_large, fill=COLOR_FONT_CRASH, anchor='mm')
+
+    # Sub-message shadow and text
+    draw.text((CANVAS_WIDTH/2 + shadow_offset, CANVAS_HEIGHT/2 + 30 + shadow_offset), submessage, font=font_small, fill=COLOR_FONT_SHADOW, anchor='mm')
     draw.text((CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 30), submessage, font=font_small, fill=COLOR_FONT_SUB, anchor='mm')
 
 # --- Main Game Class ---
@@ -297,8 +305,18 @@ def main():
     banner_image = Image.new('RGB', (BANNER_WIDTH, BANNER_HEIGHT), color=COLOR_BACKGROUND)
     draw_banner = ImageDraw.Draw(banner_image)
 
-    # 3. Add the title to the banner
+    # 3. Add the title to the banner with retro shadow effect
     font_title = get_font(30) # Using a slightly smaller size for the title
+    shadow_offset = 3
+    
+    # Title shadow and text
+    draw_banner.text(
+        (BANNER_WIDTH / 2 + shadow_offset, 50 + shadow_offset), # Position for the shadow
+        "Highway Command",
+        font=font_title,
+        fill=COLOR_FONT_SHADOW,
+        anchor='mm'
+    )
     draw_banner.text(
         (BANNER_WIDTH / 2, 50), # Position for the title
         "Highway Command",
