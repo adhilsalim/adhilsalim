@@ -7,6 +7,8 @@ from PIL import Image, ImageDraw, ImageFont
 # --- Game & Image Configuration ---
 CANVAS_WIDTH = 400
 CANVAS_HEIGHT = 600
+BANNER_WIDTH = 400
+BANNER_HEIGHT = 700 # Extra space for title
 CAR_WIDTH = 40
 CAR_HEIGHT = 70
 LANES = [CANVAS_WIDTH * 0.25, CANVAS_WIDTH * 0.5, CANVAS_WIDTH * 0.75]
@@ -15,11 +17,13 @@ DOWNWARD_CAR_SPEED = 8
 FORWARD_CAR_SPEED = -3
 
 # --- Color Palette (from HTML) ---
+COLOR_BACKGROUND = (26, 32, 44) # gray-900 for the banner background
 COLOR_ROAD = (74, 85, 104)      # gray-600
 COLOR_SCENERY_SIDE = (160, 82, 45) # Brownish dirt
 COLOR_PLAYER_CAR = '#f6e05e'
 COLOR_WHITE = (255, 255, 255)
 COLOR_CRASH_BG = (0, 0, 0, 180) # Black with alpha
+COLOR_FONT_TITLE = '#FFFFFF'
 COLOR_FONT_CRASH = '#f6e05e'
 COLOR_FONT_SUB = '#FFFFFF'
 
@@ -276,20 +280,38 @@ def main():
             game.run_commands(commands)
     
     # --- Render the final image ---
-    image = Image.new('RGB', (CANVAS_WIDTH, CANVAS_HEIGHT), color=COLOR_ROAD)
-    draw = ImageDraw.Draw(image, 'RGBA')
+    # 1. Create the game canvas image
+    game_image = Image.new('RGB', (CANVAS_WIDTH, CANVAS_HEIGHT), color=COLOR_ROAD)
+    draw_game = ImageDraw.Draw(game_image, 'RGBA')
 
-    draw_scenery(draw, game.state['sceneryObjects'])
-    draw_road(draw, game.state['roadMarkings'])
+    draw_scenery(draw_game, game.state['sceneryObjects'])
+    draw_road(draw_game, game.state['roadMarkings'])
     for car in game.state['otherCars']:
-        draw_car(draw, car)
-    draw_car(draw, game.state['playerCar'])
+        draw_car(draw_game, car)
+    draw_car(draw_game, game.state['playerCar'])
 
     if game.state['gameState'] == 'crashed':
-        draw_message(draw, 'CRASHED!', 'Use RST to reset')
+        draw_message(draw_game, 'CRASHED!', 'Use RST to reset')
+        
+    # 2. Create the final banner with background
+    banner_image = Image.new('RGB', (BANNER_WIDTH, BANNER_HEIGHT), color=COLOR_BACKGROUND)
+    draw_banner = ImageDraw.Draw(banner_image)
 
-    # Save the output
-    image.save(OUTPUT_IMAGE)
+    # 3. Add the title to the banner
+    font_title = get_font(30) # Using a slightly smaller size for the title
+    draw_banner.text(
+        (BANNER_WIDTH / 2, 50), # Position for the title
+        "Highway Command",
+        font=font_title,
+        fill=COLOR_FONT_TITLE,
+        anchor='mm'
+    )
+    
+    # 4. Paste the game canvas onto the banner
+    banner_image.paste(game_image, (0, 100)) # Position game below title
+
+    # Save the final output
+    banner_image.save(OUTPUT_IMAGE)
     with open(STATE_FILE, 'w') as f:
         json.dump(game.state, f, indent=2)
 
@@ -297,3 +319,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
