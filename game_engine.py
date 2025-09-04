@@ -316,7 +316,7 @@ def main():
     draw_banner = ImageDraw.Draw(banner_image)
 
     # 3. Add the title to the banner with retro shadow effect
-    font_title = get_font(36)
+    font_title = get_font(28) # Reduced font size to prevent overflow
     shadow_offset = 3
     
     # Title shadow and text
