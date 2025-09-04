@@ -34,19 +34,29 @@ PARKED_CAR_COLORS = ['#A0AEC0', '#718096', '#4A5568']
 # --- File Paths ---
 STATE_FILE = 'gamestate.json'
 OUTPUT_IMAGE = 'highway_banner.png'
-FONT_FILE_LARGE = 'PressStart2P-Regular.ttf'
-FONT_FILE_SMALL = 'PressStart2P-Regular.ttf'
+# ==============================================================================
+# IMPORTANT: This script is designed to use the 'PressStart2P-Regular.ttf' font.
+# For the retro style to appear, you MUST add this font file to the root
+# of your GitHub repository.
+# ==============================================================================
+FONT_FILE = 'PressStart2P-Regular.ttf'
 
 # --- Drawing & Utility Functions ---
 
 def get_font(size):
-    """Loads a font if available, otherwise uses Pillow's default."""
+    """
+    This function attempts to load the custom 'Press Start 2P' font.
+    If the file is not found in the repository, it prints a warning
+    and falls back to Pillow's basic default font.
+    """
     try:
-        return ImageFont.truetype(FONT_FILE_LARGE, size)
+        return ImageFont.truetype(FONT_FILE, size)
     except IOError:
-        print(f"Warning: Font '{FONT_FILE_LARGE}' not found. Using default font.")
-        # Pillow's default font is very basic but will prevent a crash.
-        # For best results, add 'PressStart2P-Regular.ttf' to your repo.
+        print(f"---")
+        print(f"WARNING: The font file '{FONT_FILE}' was not found in the repository.")
+        print(f"The banner will be generated with a basic default font.")
+        print(f"To fix this, download the font and add it to the root of your repo.")
+        print(f"---")
         return ImageFont.load_default()
 
 def parse_commands(command_string):
@@ -117,7 +127,7 @@ def draw_message(draw, message, submessage):
     """Draws the CRASHED message with a retro shadow effect."""
     draw.rectangle([0, CANVAS_HEIGHT/2 - 60, CANVAS_WIDTH, CANVAS_HEIGHT/2 + 60], fill=COLOR_CRASH_BG)
     font_large = get_font(40)
-    font_small = get_font(14)
+    font_small = get_font(16)
     shadow_offset = 3
 
     # Main message shadow and text
@@ -125,8 +135,8 @@ def draw_message(draw, message, submessage):
     draw.text((CANVAS_WIDTH/2, CANVAS_HEIGHT/2), message, font=font_large, fill=COLOR_FONT_CRASH, anchor='mm')
 
     # Sub-message shadow and text
-    draw.text((CANVAS_WIDTH/2 + shadow_offset, CANVAS_HEIGHT/2 + 30 + shadow_offset), submessage, font=font_small, fill=COLOR_FONT_SHADOW, anchor='mm')
-    draw.text((CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 30), submessage, font=font_small, fill=COLOR_FONT_SUB, anchor='mm')
+    draw.text((CANVAS_WIDTH/2 + shadow_offset, CANVAS_HEIGHT/2 + 35 + shadow_offset), submessage, font=font_small, fill=COLOR_FONT_SHADOW, anchor='mm')
+    draw.text((CANVAS_WIDTH/2, CANVAS_HEIGHT/2 + 35), submessage, font=font_small, fill=COLOR_FONT_SUB, anchor='mm')
 
 # --- Main Game Class ---
 
@@ -306,7 +316,7 @@ def main():
     draw_banner = ImageDraw.Draw(banner_image)
 
     # 3. Add the title to the banner with retro shadow effect
-    font_title = get_font(30) # Using a slightly smaller size for the title
+    font_title = get_font(36)
     shadow_offset = 3
     
     # Title shadow and text
