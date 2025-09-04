@@ -1,0 +1,80 @@
+name: Highway Command
+
+on:
+  issues:
+    types:
+      - opened
+
+jobs:
+  drive-the-car:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write # To commit changes back to the repo
+      issues: read    # To read the issue title
+      issues: write   # To close the issue after processing
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.9
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install Pillow requests
+
+    - name: Run the game engine
+      run: |
+        # The issue title is the command from the user
+        python generate_image.py "${{ github.event.issue.title }}"
+        
+    - name: Update README
+      id: update_readme
+      run: |
+        # Fetch the recent drivers list and append it to the README
+        RECENT_DRIVERS=$(python get_recent_drivers.py)
+        
+        # Prepare new README content, including personal details
+        cat > README.md <<- EOM
+        # Hello World, I'm Adhil 👋
+        
+        ## $ cd adhilsalim/about-me
+        Currently working as a software developer at [IBM](https://www.ibm.com/).
+        
+        ---
+        
+        # Highway Command 🚗
+        
+        Have some time in your hand? You can drive the car below.
+        
+        [**Click here to drive!**](https://github.com/${{ github.repository }}/issues/new?assignees=&labels=drive&template=drive_car.md&title=M5L1)
+        
+        ![Highway Driving Game Banner](highway_banner.png)
+        
+        ${RECENT_DRIVERS}
+        
+        > [!NOTE]
+        > Changes might take a minute or two to reflect on the profile.
+        EOM
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_REPOSITORY: ${{ github.repository }}
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add README.md highway_banner.png gamestate.json
+        # Only commit if there are changes
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update highway game state and banner"
+        git push
+
+    - name: Close the issue
+      uses: peter-evans/close-issue@v3
+      with:
+        issue-number: ${{ github.event.issue.number }}
+        comment: Thank you for playing! Your move has been processed. Check out the updated banner on the profile.
