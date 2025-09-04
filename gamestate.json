@@ -1,0 +1,36 @@
+{
+  "player": {
+    "lane": 2,
+    "x": 280.0,
+    "y": 500
+  },
+  "other_cars": [
+    {
+      "lane": 2,
+      "x": 280.0,
+      "y": -56,
+      "color": "#4299e1",
+      "speed": 8
+    },
+    {
+      "lane": 1,
+      "x": 180.0,
+      "y": -123,
+      "color": "#e53e3e",
+      "speed": -3
+    }
+  ],
+  "scenery": [
+    {
+      "type": "tree_pine",
+      "x": 15,
+      "y": 0
+    },
+    {
+      "type": "pond",
+      "x": 40,
+      "y": -40
+    }
+  ],
+  "game_over": false
+}
