@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write # To commit changes back to the repo
-      issues: read    # To read the issue title
-      issues: write   # To close the issue after processing
+      issues: write   # To read the title and close the issue
 
     steps:
     - name: Checkout repository
@@ -78,3 +77,4 @@ jobs:
       with:
         issue-number: ${{ github.event.issue.number }}
         comment: Thank you for playing! Your move has been processed. Check out the updated banner on the profile.
+
