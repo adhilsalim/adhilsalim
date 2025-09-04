@@ -121,6 +121,9 @@ def draw_message(draw, message, submessage):
 class HighwayGame:
     def __init__(self, state):
         self.state = state
+        # If state is empty (first run) or invalid, reset to a valid initial state.
+        if not self.state or 'playerCar' not in self.state:
+            self.reset()
 
     def update_positions(self, is_player_moving):
         # Update player car's X position based on lane
@@ -263,9 +266,8 @@ def main():
     if command_str.upper() == "RST":
         game.reset()
     else:
-        # On the first run, the state is empty, so reset it.
-        # Also resets if a game was left in a 'crashed' state.
-        if not game.state or game.state.get('gameState') == 'crashed':
+        # If the game was already in a crashed state, reset it before the new move.
+        if game.state.get('gameState') == 'crashed':
              game.reset()
         
         commands = parse_commands(command_str)
@@ -295,4 +297,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
