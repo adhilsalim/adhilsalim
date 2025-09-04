@@ -29,7 +29,7 @@ jobs:
     - name: Run the game engine
       run: |
         # The issue title is the command from the user
-        python generate_image.py "${{ github.event.issue.title }}"
+        python game_engine.py "${{ github.event.issue.title }}"
         
     - name: Update README
       id: update_readme
