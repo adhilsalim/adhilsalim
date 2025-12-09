@@ -322,14 +322,14 @@ def main():
     # Title shadow and text
     draw_banner.text(
         (BANNER_WIDTH / 2 + shadow_offset, 50 + shadow_offset), # Position for the shadow
-        "Highway Command",
+        "Highway Drive",
         font=font_title,
         fill=COLOR_FONT_SHADOW,
         anchor='mm'
     )
     draw_banner.text(
         (BANNER_WIDTH / 2, 50), # Position for the title
-        "Highway Command",
+        "Highway Drive",
         font=font_title,
         fill=COLOR_FONT_TITLE,
         anchor='mm'
