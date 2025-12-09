@@ -5,7 +5,7 @@ I'm currently working on IBM Watsonx Orchestrate as a software developer.
 
 ---
 
-# Highway Command 🚗
+# Highway Drive
 
 Have some time in your hand? You can drive the car below.
 
@@ -14,11 +14,11 @@ Have some time in your hand? You can drive the car below.
 ![Highway Driving Game Banner](highway_banner.png)
 
 ### Recent Drivers
+- [@adhilsalim](https://github.com/adhilsalim) drove `RST`
 - [@amalbabu0](https://github.com/amalbabu0) drove `M5L1`
 - [@adhilsalim](https://github.com/adhilsalim) drove `L1M10`
 - [@Helixjoe](https://github.com/Helixjoe) drove `M20L1`
 - [@adhilsalim](https://github.com/adhilsalim) drove `M5L1R2`
-- [@bazilsalim](https://github.com/bazilsalim) drove `RST`
 
 > [!NOTE]
 > Changes might take a minute or two to reflect on the profile.
