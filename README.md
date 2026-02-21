@@ -14,11 +14,11 @@ Have some time in your hand? You can drive the car below.
 ![Highway Driving Game Banner](highway_banner.png)
 
 ### Recent Drivers
+- [@VarunKrishnaMenon](https://github.com/VarunKrishnaMenon) drove `M5L1R2`
 - [@VarunKrishnaMenon](https://github.com/VarunKrishnaMenon) drove `M5L1`
 - [@adhilsalim](https://github.com/adhilsalim) drove `RST`
 - [@amalbabu0](https://github.com/amalbabu0) drove `M5L1`
 - [@adhilsalim](https://github.com/adhilsalim) drove `L1M10`
-- [@Helixjoe](https://github.com/Helixjoe) drove `M20L1`
 
 > [!NOTE]
 > Changes might take a minute or two to reflect on the profile.
