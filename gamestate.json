@@ -7,6 +7,12 @@
   "recent": [
     {
       "user": "adhilsalim",
+      "issue": 106,
+      "text": "placed **O** in the bottom",
+      "at": "2026-10-24"
+    },
+    {
+      "user": "adhilsalim",
       "issue": 105,
       "text": "placed **X** in the left",
       "at": "2026-10-24"
@@ -32,14 +38,14 @@
     "O",
     "",
     "",
-    "",
+    "O",
     ""
   ],
-  "turn": "O",
+  "turn": "X",
   "status": "playing",
   "winner": null,
   "winLine": null,
-  "lastMove": 3,
-  "moveCount": 3,
+  "lastMove": 7,
+  "moveCount": 4,
   "game": 1
 }
