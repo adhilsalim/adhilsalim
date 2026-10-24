@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><style>
+.bg{fill:#f6f8fa}.bd{stroke:#d0d7de}.x{stroke:#cf222e}.o{stroke:#0969da}
+.xf{fill:#cf222e}.of{fill:#0969da}.ghost{stroke:#8c959f}.t1{fill:#1f2328}.t2{fill:#59636e}
+.winx{fill:#ffebe9}.wino{fill:#ddf4ff}.btn{fill:#f6f8fa}.primary{fill:#1f883d}.ptext{fill:#ffffff}
+@media (prefers-color-scheme: dark){
+.bg{fill:#161b22}.bd{stroke:#30363d}.x{stroke:#ff7b72}.o{stroke:#79c0ff}
+.xf{fill:#ff7b72}.of{fill:#79c0ff}.ghost{stroke:#6e7681}.t1{fill:#e6edf3}.t2{fill:#9198a1}
+.winx{fill:#3d1d20}.wino{fill:#0c2d4b}.btn{fill:#21262d}.primary{fill:#238636}
+}
+.draw{stroke-dasharray:1;animation:draw .45s ease-out both}
+.draw2{animation-delay:.2s}
+.pulse{animation:pulse 2.4s ease-in-out infinite}
+@keyframes draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes pulse{0%,100%{opacity:.12}50%{opacity:.32}}
+</style><g opacity="1"><rect class="bg bd" x="4" y="4" width="112" height="112" rx="18" stroke-width="2"/><circle class="o draw" pathLength="1" cx="60" cy="60" r="26" stroke-width="12" fill="none" transform="rotate(-90 60 60)"/><circle class="of" cx="98" cy="22" r="5"/></g></svg>

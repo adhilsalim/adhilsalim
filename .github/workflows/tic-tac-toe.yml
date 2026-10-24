@@ -1,0 +1,63 @@
+name: Tic-Tac-Toe
+
+on:
+  issues:
+    types:
+      - opened
+
+permissions:
+  contents: write # To commit the new board
+  issues: write   # To reply to and close the move issue
+
+jobs:
+  play:
+    # Leave ordinary issues alone; only `ttt|...` titles are moves.
+    if: startsWith(github.event.issue.title, 'ttt|')
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Apply the move
+      env:
+        # Passed through env (never inlined into the script) so titles can't inject shell.
+        ISSUE_TITLE: ${{ github.event.issue.title }}
+        ISSUE_USER: ${{ github.event.issue.user.login }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+        TTT_RESULT_FILE: ${{ runner.temp }}/result.md
+      run: |
+        git config user.name 'github-actions[bot]'
+        git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+
+        # Two people can click at the same moment. Each attempt replays the move on
+        # top of the latest board, so moves land one after another instead of clobbering.
+        for attempt in 1 2 3 4 5; do
+          git fetch --quiet origin main
+          git reset --quiet --hard origin/main
+          python game.py
+          if git diff --quiet; then exit 0; fi
+          git commit --quiet -am "ttt: @${ISSUE_USER} played #${ISSUE_NUMBER}"
+          if git push --quiet origin HEAD:main; then exit 0; fi
+          echo "Board changed underneath us, retrying ($attempt)..."
+          sleep $((attempt * 2))
+        done
+        echo "Could not save the move after 5 attempts." > "$TTT_RESULT_FILE"
+        exit 1
+
+    - name: Reply and close the issue
+      if: always()
+      env:
+        GH_TOKEN: ${{ github.token }}
+        ISSUE_NUMBER: ${{ github.event.issue.number }}
+      run: |
+        RESULT="$RUNNER_TEMP/result.md"
+        [ -s "$RESULT" ] || echo "Something went wrong processing this move." > "$RESULT"
+        printf '\n<sub>The profile updates within a minute or two. [Back to the board](https://github.com/%s)</sub>\n' "$GITHUB_REPOSITORY" >> "$RESULT"
+        gh issue comment "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY" --body-file "$RESULT"
+        gh issue close "$ISSUE_NUMBER" --repo "$GITHUB_REPOSITORY"
