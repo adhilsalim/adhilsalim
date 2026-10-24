@@ -1,10 +1,16 @@
 {
   "stats": {
-    "X": 0,
+    "X": 1,
     "O": 0,
     "draw": 0
   },
   "recent": [
+    {
+      "user": "adhilsalim",
+      "issue": 107,
+      "text": "placed **X** in the bottom left and won game #1 \ud83c\udfc6",
+      "at": "2026-10-24"
+    },
     {
       "user": "adhilsalim",
       "issue": 106,
@@ -37,15 +43,19 @@
     "X",
     "O",
     "",
-    "",
+    "X",
     "O",
     ""
   ],
   "turn": "X",
-  "status": "playing",
-  "winner": null,
-  "winLine": null,
-  "lastMove": 7,
-  "moveCount": 4,
+  "status": "won",
+  "winner": "X",
+  "winLine": [
+    0,
+    3,
+    6
+  ],
+  "lastMove": 6,
+  "moveCount": 5,
   "game": 1
 }
