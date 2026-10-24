@@ -4,9 +4,16 @@
     "O": 0,
     "draw": 0
   },
-  "recent": [],
+  "recent": [
+    {
+      "user": "adhilsalim",
+      "issue": 103,
+      "text": "placed **X** in the top left",
+      "at": "2026-10-24"
+    }
+  ],
   "board": [
-    "",
+    "X",
     "",
     "",
     "",
@@ -16,11 +23,11 @@
     "",
     ""
   ],
-  "turn": "X",
+  "turn": "O",
   "status": "playing",
   "winner": null,
   "winLine": null,
-  "lastMove": null,
-  "moveCount": 0,
+  "lastMove": 0,
+  "moveCount": 1,
   "game": 1
 }
