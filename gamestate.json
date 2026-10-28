@@ -7,6 +7,12 @@
   "recent": [
     {
       "user": "adhilsalim",
+      "issue": 108,
+      "text": "started game #2",
+      "at": "2026-10-28"
+    },
+    {
+      "user": "adhilsalim",
       "issue": 107,
       "text": "placed **X** in the bottom left and won game #1 \ud83c\udfc6",
       "at": "2026-10-24"
@@ -37,25 +43,21 @@
     }
   ],
   "board": [
-    "X",
     "",
     "",
-    "X",
-    "O",
     "",
-    "X",
-    "O",
+    "",
+    "",
+    "",
+    "",
+    "",
     ""
   ],
   "turn": "X",
-  "status": "won",
-  "winner": "X",
-  "winLine": [
-    0,
-    3,
-    6
-  ],
-  "lastMove": 6,
-  "moveCount": 5,
-  "game": 1
+  "status": "playing",
+  "winner": null,
+  "winLine": null,
+  "lastMove": null,
+  "moveCount": 0,
+  "game": 2
 }
